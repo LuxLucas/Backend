@@ -1,39 +1,30 @@
-/*
-    2. Estrutura de um Programa Java
-
-    Exercício:
-    Crie um programa que imprima os dados de um funcionário: nome completo, cargo e salário. Use System.out.println para cada informação.
-    Exemplo de saída:
-
-    Nome: Mariana Silva
-    Cargo: Analista de Sistemas
-    Salário: R$ 4500.00
- */
-
 package lista001.exercicio02;
 import java.util.Scanner;
+
 public class Main{
+    private Scanner scan = new Scanner(System.in);
     public static void main(String[] args){
-        Main main = new Main();
-        Employee employee = main.newEmployee();
+        Main origin = new Main();
+        Employee employee = origin.newEmployee();
         employee.show();
     }
 
     private String getNameEmployee(){
-        Scanner scan = new Scanner(System.in);
         System.out.println("Nome do funcionário: ");
         return scan.nextLine();
     }
 
     private String getPositionEmployee(){
-        Scanner scan = new Scanner(System.in);
         System.out.println("Cargo do funcionário: ");
         return scan.nextLine();
     }
 
     private Double getSalaryEmployee(){
-        Scanner scan = new Scanner(System.in);
         System.out.println("Salário do funcionário: ");
+        while(!scan.hasNextDouble()){
+            System.out.println("Valor inválido. Digite um novo: ");
+            scan.next();
+        }
         return scan.nextDouble();
     }
 
@@ -48,6 +39,4 @@ public class Main{
 
         return new Employee(name, position, salary);
     }
-
-
 }
