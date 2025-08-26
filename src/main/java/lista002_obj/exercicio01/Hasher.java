@@ -30,14 +30,19 @@ public class Hasher{
     }
 
     private short[] createRandomNumbersEqualToThePasswordLength(){
-        short[] randomNumbers = new short[8];
-        for(short i = 0; i < 8; i++){
+        short[] randomNumbers = new short[this.passwordLength];
+        for(short i = 0; i < this.passwordLength; i++){
             randomNumbers[i] = (short) this.random.nextInt(0, SYMBOLS_FOR_HASHING.length());
         }
         return randomNumbers;
     }
 
-    public String password(){
-
+    public String newPassword(){
+        String password = "";
+        short[] randomNumbers = createRandomNumbersEqualToThePasswordLength();
+        for(short index: randomNumbers){
+            password += SYMBOLS_FOR_HASHING.charAt(index);
+        }
+        return password;
     }
 }
