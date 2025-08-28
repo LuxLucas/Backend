@@ -14,6 +14,10 @@ public class Hasher{
             "\\`~^" +
             "çÇ";
 
+    public Hasher(){
+        passwordLength = 8;
+    }
+
     public Hasher(int passwordLength){
         setPasswordLenght(passwordLength);
     }
