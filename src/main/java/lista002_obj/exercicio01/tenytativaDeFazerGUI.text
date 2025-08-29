@@ -1,0 +1,36 @@
+JFrame frame = new JFrame("Criador automático de senhas");
+        JPanel panelPasswordLength, panelPassword;
+        JLabel labelPasswordLength, labelPassword;
+        JTextField inputPasswordLength;
+        JPasswordField passwordField;
+        JButton generaterPassword, passwordCopier, viwerPassword;
+
+        //Tamanho da senha
+        panelPasswordLength = new JPanel();
+        panelPasswordLength.setLayout(new FlowLayout());
+        labelPasswordLength = new JLabel("Tamanho da senha:");
+        inputPasswordLength = new JTextField();
+
+        panelPasswordLength.setLayout(new GridLayout(1,2));
+        panelPasswordLength.add(labelPasswordLength);
+        panelPasswordLength.add(inputPasswordLength);
+
+        //Senha gerada
+        panelPassword = new JPanel();
+        panelPassword.setLayout(new FlowLayout());
+        labelPassword = new JLabel("Senha gerada:");
+        passwordField = new JPasswordField();
+
+        panelPassword.setLayout(new GridLayout(1,2));
+        panelPassword.add(labelPassword);
+        panelPassword.add(passwordField);
+
+        //Botões inferiores
+
+        //Conteúdo principal
+        frame.setSize(300, 200);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(panelPasswordLength, BorderLayout.NORTH);
+        frame.add(panelPassword, BorderLayout.SOUTH);
+
+        frame.setVisible(true);
