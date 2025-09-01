@@ -10,6 +10,8 @@ public class Main {
         for (SoccerPlayer player : soccerPlayers) {
             System.out.println(player);
         }
+
+        System.out.println(new SoccerPlayer("Lucas", "Flôres", "Zagueiro", "Criciúma", (short) 18));
     }
 }
 

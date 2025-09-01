@@ -76,10 +76,10 @@ public class SoccerPlayer {
     }
     
     public SoccerPlayer(String firstName,
-                          String lastName,
-                          String position,
-                          String team,
-                          short age){
+                        String lastName,
+                        String position,
+                        String team,
+                        short age){
 
         setFirstName(firstName);
         setLastName(lastName);
@@ -113,7 +113,7 @@ public class SoccerPlayer {
     }
 
     private boolean isValidPosition(String position){
-        if(!isValidString(position)){  
+        if(isValidString(position)){  
             for(String p: POSITIONS){
                 if(p.equalsIgnoreCase(position)){
                     return true;
@@ -128,14 +128,10 @@ public class SoccerPlayer {
     }
 
     private <T> void setProperty(T value, Consumer<T> setter, Predicate<T> validate){
-        try{
-            if(!validate.test(value)){
-                throw new IllegalArgumentException(String.format("Valor indevido: '%s'.", value));
-            }
-            setter.accept(value);
-        }catch(IllegalArgumentException e){
-            System.out.println(e);
+        if(!validate.test(value)){
+            throw new IllegalArgumentException(String.format("Valor indevido: '%s'.", value));
         }
+        setter.accept(value);
     }
 
     public void setFirstName(String firstName) {
