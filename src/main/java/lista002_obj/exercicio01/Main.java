@@ -1,7 +1,5 @@
 package lista002_obj.exercicio01;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.Scanner;
 
 public class Main{
