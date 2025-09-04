@@ -1,5 +1,5 @@
 package lista002_obj.exercicio03;
 
-public class PokemonApiRequestClient {
+public class PokemonApi {
     
 }

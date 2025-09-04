@@ -4,24 +4,34 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.URI;
-import java.util.Random;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 
 public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
+    String uri = "https://pokeapi.co/api/v2/"; 
+    HttpClient client = HttpClient.newBuilder().build();
 
-        short limitOfPokemons = 5;
-        short maxOffset = (short) (1025 - limitOfPokemons);
-        Random random = new Random();
-        short randomOffset = (short) random.nextInt(maxOffset);
-
-        String uriApi = "https://pokeapi.co/api/v2/pokemon/";
-        String parameters = String.format("?limit=%d&offset=%d", limitOfPokemons, randomOffset);
-        String uriRequest = uriApi + parameters;
-
-        HttpRequest request = HttpRequest.newBuilder()
+    HttpRequest request = HttpRequest.newBuilder()
         .GET()
-        .uri(URI.create(uriRequest))
+        .uri(URI.create(uri + "pokemon/"))
         .build();
+
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(response.body());
+            
+            ArrayNode jsonArray = (ArrayNode) objectMapper.readTree("results").get("results");
+            for(JsonNode json: jsonArray){
+                System.out.println(json.get("name").asText());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
